@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
+import {AppBar, Box, Toolbar, Typography, Button, IconButton} from '@mui/material';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
@@ -9,10 +9,19 @@ import clsx from 'clsx';
 import styles from './Header.module.scss';
 
 const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>Header</h2>
-    {children}
-  </div>
+  <Box sx={{flexGrow: 1}}>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{mr: 2}}>
+
+        </IconButton>
+        <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+          News
+        </Typography>
+        <Button color="inherit">Login</Button>
+      </Toolbar>
+    </AppBar>
+  </Box>
 );
 
 Component.propTypes = {

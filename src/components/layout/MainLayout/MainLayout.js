@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
+import {Container, Paper} from '@material-ui/core';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
+import {Header} from '../Header/Header';
+
 import styles from './MainLayout.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>MainLayout</h2>
-    {children}
-  </div>
+const Component = ({children}) => (
+  <Container className={styles.root} sx={{display: 'flex'}}>
+    <Header></Header>
+    <Paper elevation={2} className={styles.paper}>
+      {children}
+    </Paper>
+  </Container>
 );
 
 Component.propTypes = {
