@@ -7,11 +7,12 @@ import clsx from 'clsx';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import styles from './PostAdd.module.scss';
+import { FormPostAdd } from '../../common/FormPostAdd/FormPostAdd';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
     <h2>PostAdd</h2>
-    {children}
+    <FormPostAdd></FormPostAdd>
   </div>
 );
 

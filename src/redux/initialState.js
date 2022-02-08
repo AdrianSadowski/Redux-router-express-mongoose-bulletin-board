@@ -3,9 +3,17 @@ import shortid from 'shortid';
 const userOneId = shortid();
 
 const initialState = {
-  users: [],
+  users: [
+    {
+      id: userOneId,
+      email: 'sadow.adrian@gmail.com',
+      password: '123',
+    },
+  ],
   user: {
-    logged: false,
+    logged: true,
+    id: undefined,
+    role: undefined,
   },
   posts: {
     data: [
