@@ -11,7 +11,7 @@ const initialState = {
     },
   ],
   user: {
-    logged: true,
+    logged: false,
     id: userOneId,
     role: undefined,
   },

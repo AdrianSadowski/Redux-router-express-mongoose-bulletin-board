@@ -26,7 +26,7 @@ const Component = ({className, posts, isLoggedIn}) => {
   
   let buttonNewPost;
   if (isLoggedIn.logged) {
-    console.log(`isLoggedIn.logged === 'true'`);
+    console.log(`isLoggedIn.logged === true`);
     buttonNewPost = (
       <Button
         component={Link}
@@ -39,7 +39,7 @@ const Component = ({className, posts, isLoggedIn}) => {
       </Button>
     );
   } else {
-    console.log(`isLoggedIn.logged === 'false'`);
+    console.log(`isLoggedIn.logged === false`);
     buttonNewPost = (
       <Button
         component={Link}
@@ -53,12 +53,6 @@ const Component = ({className, posts, isLoggedIn}) => {
     );
 
   }
-
-  // if (auth) {
-  //   concent.display = 'block';
-  // } else {
-  //   concent.display = 'none';
-  // }
   return (
     <div className={clsx(className, styles.root)}>
       <Toolbar sx={{justifyContent: 'space-between'}}>
