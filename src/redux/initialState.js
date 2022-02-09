@@ -12,7 +12,7 @@ const initialState = {
   ],
   user: {
     logged: true,
-    id: undefined,
+    id: userOneId,
     role: undefined,
   },
   posts: {

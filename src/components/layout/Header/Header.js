@@ -11,9 +11,9 @@ import {
   Typography,
   Button,
   IconButton,
-  FormGroup,
-  FormControlLabel,
-  Switch,
+  // FormGroup,
+  // FormControlLabel,
+  // Switch,
 } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -24,11 +24,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 //import styles from './Header.module.scss';
 
 function Component({className, children, isLoggedIn}) {
-  const [auth, setAuth] = React.useState(true);
+  // const [auth, setAuth] = React.useState(true);
 
-  const handleChange = event => {
-    setAuth(event.target.checked);
-  };
+  // const handleChange = event => {
+  //   setAuth(event.target.checked);
+  // };
 
   // const logout = () => {
   //   handleClose();
@@ -50,10 +50,7 @@ function Component({className, children, isLoggedIn}) {
   } else {
     buttons = (
       <>
-        <Button 
-          component={Link}
-          to="/login"
-          variant="contained" size="medium" color="secondary">
+        <Button component={Link} to="/login" variant="contained" size="medium" color="secondary">
           LOGIN
         </Button>
       </>
@@ -62,15 +59,23 @@ function Component({className, children, isLoggedIn}) {
 
   return (
     <Box sx={{flexGrow: 1}}>
-      <FormGroup>
+      {/* <FormGroup>
         <FormControlLabel
           control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
           label={auth ? 'Logout' : 'Login'}
         />
-      </FormGroup>
+      </FormGroup> */}
       <AppBar position="static">
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{mr: 2}}>
+          <IconButton
+            component={Link}
+            to="/"
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{mr: 2}}
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
