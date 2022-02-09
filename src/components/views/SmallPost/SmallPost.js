@@ -1,6 +1,6 @@
-import {Box, Typography, Card, CardActionArea} from '@mui/material';
+import {Box, Typography, Card, CardActionArea, Badge} from '@mui/material';
 
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -10,30 +10,30 @@ import PropTypes from 'prop-types';
 import styles from './SmallPost.module.scss';
 
 const Component = ({post}) => (
-  <div className={styles.root}>
-    <Card
-      key={post.id}
-      raised
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        mb: 3,
-      }}
-    >
-      <CardActionArea component={Link} to={`post/${post.id}`}>
-        <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+  //<Badge status={post.status}>
+  <Card
+    key={post.id}
+    raised
+    sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      mb: 4,
+    }}
+  >
+    <CardActionArea component={Link} to={`post/${post.id}`} >
+      <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+        <Typography variant="h6" p={2}>
+          {post.title}
+        </Typography>
+        {post.price ? (
           <Typography variant="h6" p={2}>
-            {post.title}
+            {post.price} pln
           </Typography>
-          {post.price ? (
-            <Typography variant="h6" p={2}>
-              {post.price} pln
-            </Typography>
-          ) : null}
-        </Box>
-      </CardActionArea>
-    </Card>
-  </div>
+        ) : null}
+      </Box>
+    </CardActionArea>
+  </Card>
+  //</Badge>
 );
 
 Component.propTypes = {
@@ -41,6 +41,7 @@ Component.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string,
+    status: PropTypes.string,
   }).isRequired,
 };
 

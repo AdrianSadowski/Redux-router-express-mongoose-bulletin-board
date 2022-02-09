@@ -11,12 +11,13 @@ import {
   Typography,
   Button,
   IconButton,
+
   // FormGroup,
   // FormControlLabel,
   // Switch,
 } from '@mui/material';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
-import MenuIcon from '@mui/icons-material/Menu';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
@@ -59,27 +60,18 @@ function Component({className, children, isLoggedIn}) {
 
   return (
     <Box sx={{flexGrow: 1}}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup> */}
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            component={Link}
-            to="/"
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{mr: 2}}
-          >
-            <MenuIcon />
-          </IconButton>
+          <Link to="/">
+            <IconButton
+              aria-label="back to homepage"
+              size="large"
+            >
+              <HomeOutlinedIcon fontSize="inherit" sx={{ fontSize: 40, color: '#9c27b0' }}/>
+            </IconButton>
+          </Link>
           <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-            Photos
+              Bullietyn Board by Adrian Sadowski
           </Typography>
           {buttons}
         </Toolbar>

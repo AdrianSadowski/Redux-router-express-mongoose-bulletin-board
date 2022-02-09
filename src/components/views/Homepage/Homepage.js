@@ -17,13 +17,12 @@ import clsx from 'clsx';
 import styles from './Homepage.module.scss';
 
 const Component = ({className, posts, isLoggedIn}) => {
-  
   const concent = {
     title: 'All posts',
     buttonPostAdd: 'Add new post',
     display: 'none',
   };
-  
+
   let buttonNewPost;
   if (isLoggedIn.logged) {
     console.log(`isLoggedIn.logged === true`);
@@ -51,7 +50,6 @@ const Component = ({className, posts, isLoggedIn}) => {
         {concent.buttonPostAdd}
       </Button>
     );
-
   }
   return (
     <div className={clsx(className, styles.root)}>
@@ -70,9 +68,11 @@ const Component = ({className, posts, isLoggedIn}) => {
         ) : null} */}
         {buttonNewPost}
       </Toolbar>
-      {posts.map(post => (
-        <SmallPost key={post.id} post={post}></SmallPost>
-      ))}
+      <div className={styles.post}>
+        {posts.map(post => (
+          <SmallPost key={post.id} post={post}></SmallPost>
+        ))}
+      </div>
     </div>
   );
 };
