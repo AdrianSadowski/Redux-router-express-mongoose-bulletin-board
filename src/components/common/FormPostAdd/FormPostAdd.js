@@ -62,7 +62,6 @@ function Component({className, children, addNewPost, userData}) {
           </Grid>
         </Grid>
       </Box>
-      {children}
     </div>
   );
 }

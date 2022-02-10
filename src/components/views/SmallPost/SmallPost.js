@@ -1,4 +1,4 @@
-import {Box, Typography, Card, CardActionArea, Badge} from '@mui/material';
+import {Box, Typography, Card, CardActionArea} from '@mui/material';
 
 import {Link} from 'react-router-dom';
 import React from 'react';
@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './SmallPost.module.scss';
+// import styles from './SmallPost.module.scss';
 
 const Component = ({post}) => (
   //<Badge status={post.status}>
-  <Card
+  <Card 
     key={post.id}
     raised
     sx={{
