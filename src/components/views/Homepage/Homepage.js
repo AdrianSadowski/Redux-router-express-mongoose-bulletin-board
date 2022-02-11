@@ -16,6 +16,7 @@ import clsx from 'clsx';
 
 import styles from './Homepage.module.scss';
 
+
 const Component = ({className, posts, isLoggedIn}) => {
   const concent = {
     title: 'All posts',
