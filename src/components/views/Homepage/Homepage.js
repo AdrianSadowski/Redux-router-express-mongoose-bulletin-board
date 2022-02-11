@@ -9,10 +9,8 @@ import {SmallPost} from '../SmallPost/SmallPost';
 
 import {Button, Toolbar} from '@mui/material';
 
-import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+
 
 import styles from './Homepage.module.scss';
 
@@ -21,7 +19,6 @@ const Component = ({className, posts, isLoggedIn}) => {
   const concent = {
     title: 'All posts',
     buttonPostAdd: 'Add new post',
-    display: 'none',
   };
 
   let buttonNewPost;
@@ -53,20 +50,9 @@ const Component = ({className, posts, isLoggedIn}) => {
     );
   }
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Toolbar sx={{justifyContent: 'space-between'}}>
         <h2>{concent.title}</h2>
-        {/* {isLoggedIn ? (
-          <Button
-            component={Link}
-            to="/post/add"
-            size="small"
-            variant="outlined"
-            sx={{display: concent.display}}
-          >
-            {concent.buttonPostAdd}
-          </Button>
-        ) : null} */}
         {buttonNewPost}
       </Toolbar>
       <div className={styles.post}>

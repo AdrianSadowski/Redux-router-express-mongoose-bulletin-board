@@ -1,12 +1,18 @@
 import shortid from 'shortid';
 
 const userOneId = shortid();
+const userTwoId = shortid();
 
 const initialState = {
   users: [
     {
       id: userOneId,
       email: 'sadow.adrian@gmail.com',
+      password: '123',
+    },
+    {
+      id: userTwoId,
+      email: 'kowalski@poczta.pl',
       password: '123',
     },
   ],
@@ -19,52 +25,55 @@ const initialState = {
     data: [
       {
         id: shortid(),
-        title: 'Post One',
+        title: 'Audi RS6',
         description: `Description of post One. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
         publicationDate: '7-02-2022',
         lastUpdate: '7-02-2022',
         author: {
-          id: userOneId,
+          id: userTwoId,
           email: 'kowalski@poczta.pl',
         },
         status: 'published',
-        price: '200',
+        price: '489',
         location: 'Warszawa',
       },
       {
         id: shortid(),
-        title: 'Post Two',
+        title: 'Mercedes-Benz AMG GT',
         description: `Description of post Two. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
         publicationDate: '7-02-2022',
         lastUpdate: '7-02-2022',
         author: {
-          id: userOneId, 
+          id: userTwoId,
           email: 'kowalski@poczta.pl',
         },
         status: 'published',
-        price: '200',
+        price: '1800',
         location: 'Dubai',
       },
       {
         id: shortid(),
-        title: 'Post Three',
+        title: 'BMW M3 DKG',
         description: `Description of post Three. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
         publicationDate: '7-02-2022',
         lastUpdate: '7-02-2022',
-        author: {id: userOneId},
+        author: {
+          id: userOneId,
+          email: 'sadow.adrian@gmail.com',
+        },
         status: 'published',
-        price: '200',
+        price: '999',
         location: 'Krakow',
       },
       {
         id: shortid(),
-        title: 'Post Four',
+        title: 'Ferrari California F1',
         description: `Description of post Four. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
         publicationDate: '7-02-2022',
         lastUpdate: '7-02-2022',
         author: {
-          id: userOneId, 
-          email: 'kowalski@poczta.pl',
+          id: userOneId,
+          email: 'sadow.adrian@gmail.com',
         },
         status: 'published',
         price: '200',
