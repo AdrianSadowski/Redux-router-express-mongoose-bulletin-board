@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {getUser} from '../../../redux/userRedux';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Button} from '@mui/material';
+import {removePost} from '../../../redux/postsRedux';
+
 
 import styles from './PostButtons.module.scss';
 
@@ -11,24 +13,34 @@ import styles from './PostButtons.module.scss';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 function Component({post, isLoggedIn}) {
-  
+  const dispatch = useDispatch();
+
+  const handlePost = event => {
+    event.preventDefault();
+    dispatch(removePost(post.id));
+    console.log(post);
+  };
+
   let buttons;
   if (isLoggedIn.logged === true) {
-
-    if(isLoggedIn.id === post.author.id || isLoggedIn.role === 'admin' ){
-
+    if (isLoggedIn.id === post.author.id || isLoggedIn.role === 'admin') {
       buttons = (
         <div className={styles.root}>
           <Button
             component={Link}
             to={`/post/${post.id}/edit`}
-            variant="outlined"
+            variant="contained"
             size="medium"
             color="secondary"
           >
             EDIT
           </Button>
-          <Button component={Link} to="/login" variant="outlined" size="medium" color="secondary">
+          <Button
+            onClick={event => handlePost(event)}
+            variant="contained"
+            size="medium"
+            color="warning"
+          >
             DELETE
           </Button>
         </div>
@@ -39,11 +51,7 @@ function Component({post, isLoggedIn}) {
   } else {
     return null;
   }
-  return (
-    <>
-      {buttons}
-    </>
-  );
+  return <>{buttons}</>;
 }
 
 Component.propTypes = {

@@ -18,8 +18,8 @@ const initialState = {
   ],
   user: {
     logged: true,
-    id: userOneId,
-    role: 'admin',
+    id: userTwoId,
+    role: 'user',
   },
   posts: {
     data: [
