@@ -13,8 +13,6 @@ import {
 } from '@mui/material';
 import {PostButtons} from '../PostButtons/PostButtons';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 function Component({post}) {
   const {
@@ -28,7 +26,9 @@ function Component({post}) {
     publicationDate,
     status,
     title,
+    id,
   } = post;
+  console.log('post', post);
 
   return (
     <div>
