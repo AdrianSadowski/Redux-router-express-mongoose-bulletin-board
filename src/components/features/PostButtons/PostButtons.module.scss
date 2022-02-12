@@ -1,0 +1,12 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 20px 20px 0;
+
+
+  a{
+    margin-left: 10px;
+  }
+}

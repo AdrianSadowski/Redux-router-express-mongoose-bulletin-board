@@ -11,10 +11,10 @@ import {
   ListItem,
   List,
 } from '@mui/material';
+import {PostButtons} from '../PostButtons/PostButtons';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
 
 function Component({post}) {
   const {
@@ -23,6 +23,7 @@ function Component({post}) {
     lastUpdate,
     location = null,
     image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwGxHfMnnGIe8IQihn8Ul6cVeD8JelKD0HPA&usqp=CAU',
+    image2 = 'https://cdn.motor1.com/images/mgl/JlYlQ/s4/abt-audi-rs-6-johann-abt-signature-edition.jpg',
     price,
     publicationDate,
     status,
@@ -30,7 +31,8 @@ function Component({post}) {
   } = post;
 
   return (
-    <Badge status={status}>
+    <div>
+      {/* <Badge status={status}> */}
       <Card>
         <Grid container spacing={2}>
           <Grid
@@ -73,10 +75,13 @@ function Component({post}) {
           </Grid>
           <Grid item xs={12} sm={4} md={3}>
             <CardMedia component="img" src={image} alt="PostContent image example" />
+            <CardMedia component="img" src={image2} alt="PostContent image example" />
           </Grid>
         </Grid>
+        <PostButtons post={post} />
       </Card>
-    </Badge>
+      {/* </Badge> */}
+    </div>
   );
 }
 
@@ -92,6 +97,7 @@ Component.propTypes = {
     title: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     image: PropTypes.string,
+    image2: PropTypes.string,
     price: PropTypes.string,
     location: PropTypes.string,
   }).isRequired,
