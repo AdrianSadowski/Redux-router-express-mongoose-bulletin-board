@@ -19,6 +19,7 @@ const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
 const ADD_POST = createActionName('ADD_POST');
 const REMOVE_POST = createActionName('REMOVE_POST');
+const UPDATE_POST = createActionName('UPDATE_POST');
 
 /* action creators */
 export const fetchStarted = payload => ({payload, type: FETCH_START});
@@ -26,6 +27,7 @@ export const fetchSuccess = payload => ({payload, type: FETCH_SUCCESS});
 export const fetchError = payload => ({payload, type: FETCH_ERROR});
 export const addPost = payload => ({payload, type: ADD_POST});
 export const removePost = payload => ({payload, type: REMOVE_POST});
+export const updatePost = payload => ({payload, type: UPDATE_POST});
 
 /* thunk creators */
 
@@ -70,6 +72,13 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         data: [...statePart.data.filter(post => post.id !== action.payload)],
       };
+    }
+    case UPDATE_POST: {
+      const index = statePart.data.findIndex(item => item.id === action.payload.id);
+      const newData = [...statePart.data];
+      newData[index] = action.payload;
+
+      return {...statePart, data: newData};
     }
     default:
       return statePart;

@@ -1,18 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Box,
-  Grid,
-  Badge,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  ListItem,
-  List,
-} from '@mui/material';
+import {Box, Grid, Card, CardMedia, CardContent, Typography, ListItem, List} from '@mui/material';
 import {PostButtons} from '../PostButtons/PostButtons';
-
 
 function Component({post}) {
   const {
@@ -24,9 +13,7 @@ function Component({post}) {
     image2 = 'https://cdn.motor1.com/images/mgl/JlYlQ/s4/abt-audi-rs-6-johann-abt-signature-edition.jpg',
     price,
     publicationDate,
-    status,
     title,
-    id,
   } = post;
   console.log('post', post);
 
@@ -102,15 +89,5 @@ Component.propTypes = {
     location: PropTypes.string,
   }).isRequired,
 };
-
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {Component as PostContent};

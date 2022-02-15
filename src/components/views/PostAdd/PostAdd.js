@@ -1,36 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import {addPost} from '../../../redux/postsRedux';
+import shortid from 'shortid';
+import {connect} from 'react-redux';
 
 import styles from './PostAdd.module.scss';
-import { FormPostAdd } from '../../common/FormPostAdd/FormPostAdd';
+import {FormPostAdd} from '../../features/FormPostAdd/FormPostAdd';
 
-const Component = () => (
-  <div className={styles.root}>
-    <FormPostAdd></FormPostAdd>
-  </div>
-);
+const Component = ({addNewPost}) => {
+  const sendForm = formData => {
+    addNewPost({
+      ...formData,
+      id: shortid(),
+      publicationDate: formData.lastUpdate,
+    });
+  };
+
+  return (
+    <div className={styles.root}>
+      <FormPostAdd sendForm={sendForm} />
+    </div>
+  );
+};
 
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  addNewPost: PropTypes.func.isRequired,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapDispatchToProps = dispatch => ({
+  addNewPost: payload => dispatch(addPost(payload)),
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
-  Component as PostAdd,
-  // Container as PostAdd,
+  //Component as PostAdd,
+  Container as PostAdd,
   Component as PostAddComponent,
 };

@@ -1,34 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import {useParams} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {getPostById, updatePost} from '../../../redux/postsRedux';
 
 import styles from './PostEdit.module.scss';
+import {FormPostEdit} from '../../features/FormPostEdit/FormPostEdit';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>PostEdit</h2>
-    {children}
-  </div>
-);
-
-Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
+const Component = () => {
+  const {id} = useParams();
+  const dispatch = useDispatch();
+  const post = useSelector(state => getPostById(state, id));
+  const editPost = payload => dispatch(updatePost(payload));
+  const sendForm = formData => {
+    editPost({
+      ...formData,
+      id,
+    });
+  };
+  return (
+    <div className={styles.root}>
+      <h2>PostEdit {post.title}</h2>
+      <FormPostEdit sendForm={sendForm} post={post} />
+    </div>
+  );
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+Component.propTypes = {};
 
 export {
   Component as PostEdit,
