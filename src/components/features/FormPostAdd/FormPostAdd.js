@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {addPost} from '../../../redux/postsRedux';
 import {getUserData} from '../../../redux/userRedux';
 import { formatDate } from '../../../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 import {Grid, TextField, Box, Button} from '@mui/material';
 
@@ -18,13 +19,15 @@ function Component({className, children, addNewPost, userData}) {
   const [description, setDescription] = useState();
   const [price, setPrice] = useState();
   const [location, setLocation] = useState();
+  const navigate = useNavigate();
 
   const handleSubmit = event => {
     event.preventDefault();
     const today = formatDate.DDMMYYYY(new Date());
+    const newID = shortid();
 
     addNewPost({
-      id: shortid(),
+      id: newID,
       title,
       description,
       publicationDate: today,
@@ -37,6 +40,8 @@ function Component({className, children, addNewPost, userData}) {
       price,
       location,
     });
+
+    navigate(`/post/${newID}`, {state: {prevAction: `Post ${title} has been added`}});
   };
 
   return (
