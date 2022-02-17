@@ -69,12 +69,12 @@ function Component({post, sendForm}) {
           </Grid>
           <Grid item>
             <Button onClick={handleSubmit} variant="contained" id="draft">
-              Save draft
+              Save as draft
             </Button>
           </Grid>
           <Grid item>
             <Button onClick={handleSubmit} variant="contained" id="published">
-              Add Post
+              Save as Post
             </Button>
           </Grid>
         </Grid>
