@@ -1,3 +1,5 @@
+import Axios from 'axios';
+
 /* selectors */
 export const getAll = ({posts}) => posts.data;
 export const getPostById = ({posts, users}, postId) => {
@@ -8,6 +10,7 @@ export const getPostById = ({posts, users}, postId) => {
   }
   return post;
 };
+export const getAllPublished = ({posts}) => posts.data.filter(item => item.status === 'published');
 
 /* action name creator */
 const reducerName = 'posts';
@@ -17,6 +20,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const FETCH_POSTS = createActionName('FETCH_POSTS');
 const ADD_POST = createActionName('ADD_POST');
 const REMOVE_POST = createActionName('REMOVE_POST');
 const UPDATE_POST = createActionName('UPDATE_POST');
@@ -25,11 +29,40 @@ const UPDATE_POST = createActionName('UPDATE_POST');
 export const fetchStarted = payload => ({payload, type: FETCH_START});
 export const fetchSuccess = payload => ({payload, type: FETCH_SUCCESS});
 export const fetchError = payload => ({payload, type: FETCH_ERROR});
+const fetchPosts = payload => ({payload, type: FETCH_POSTS});
 export const addPost = payload => ({payload, type: ADD_POST});
 export const removePost = payload => ({payload, type: REMOVE_POST});
 export const updatePost = payload => ({payload, type: UPDATE_POST});
 
 /* thunk creators */
+// export const fetchPublished = () => {
+//   return (dispatch, getState) => {
+//     dispatch(fetchStarted());
+
+//     Axios.get('http://localhost:8000/api/posts')
+//       .then(res => {
+//         dispatch(fetchSuccess(res.data));
+//       })
+//       .catch(err => {
+//         dispatch(fetchError(err.message || true));
+//       });
+//   };
+// };
+export const fetchAllPosts = () => async (dispatch, getState) => {
+  const {posts} = getState();
+
+  if (!posts.data.length) {
+    dispatch(fetchStarted());
+    await Axios.get('http://localhost:8000/api/posts')
+      .then(res => {
+        dispatch(fetchPosts(res.data));
+        dispatch(fetchSuccess(res.data));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  }
+};
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {

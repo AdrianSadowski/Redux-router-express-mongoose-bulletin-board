@@ -2,23 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getAll} from '../../../redux/postsRedux';
+import {getAll , fetchAllPosts} from '../../../redux/postsRedux';
 import {getUser} from '../../../redux/userRedux';
 
 import {SmallPost} from '../SmallPost/SmallPost';
 
 import {Button, Toolbar} from '@mui/material';
 
-
-
-
 import styles from './Homepage.module.scss';
-
 
 const Component = ({className, posts, isLoggedIn}) => {
   const concent = {
     title: 'All posts',
     buttonPostAdd: 'Add new post',
+    posts: posts.filter(post => post.status === 'published'),
   };
 
   let buttonNewPost;
@@ -56,9 +53,10 @@ const Component = ({className, posts, isLoggedIn}) => {
         {buttonNewPost}
       </Toolbar>
       <div className={styles.post}>
-        {posts.map(post => (
+        {concent.posts.map(post => (
           <SmallPost key={post.id} post={post}></SmallPost>
         ))}
+
       </div>
     </div>
   );
@@ -76,11 +74,11 @@ const mapStateToProps = state => ({
   isLoggedIn: getUser(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  fetchAllPosts: () => dispatch(fetchAllPosts()),
+});
 
-const Container = connect(mapStateToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   // Component as Homepage,
