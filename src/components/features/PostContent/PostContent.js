@@ -4,6 +4,7 @@ import {Box, Grid, Card, CardMedia, CardContent, Typography, ListItem, List} fro
 import {PostButtons} from '../PostButtons/PostButtons';
 
 function Component({post}) {
+  console.log('post', post);
   const {
     author,
     description,
@@ -15,7 +16,6 @@ function Component({post}) {
     publicationDate,
     title,
   } = post;
-  console.log('post', post);
 
   return (
     <div>
@@ -53,7 +53,7 @@ function Component({post}) {
             <CardContent sx={{flexGrow: 1}}>{description}</CardContent>
             <List>
               <ListItem>
-                <Typography variant="caption">Contact: {author.email}</Typography>
+                <Typography variant="caption">Contact: {author}</Typography>
               </ListItem>
               <ListItem>
                 <Typography variant="caption">Last Update: {lastUpdate}</Typography>
@@ -74,11 +74,9 @@ function Component({post}) {
 
 Component.propTypes = {
   post: PropTypes.shape({
-    author: PropTypes.shape({
-      email: PropTypes.string.isRequired,
-    }).isRequired,
-    id: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    _id: PropTypes.string.isRequired,
+    description: PropTypes.string,
     lastUpdate: PropTypes.string.isRequired,
     publicationDate: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

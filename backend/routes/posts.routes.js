@@ -6,7 +6,7 @@ const Post = require('../models/post.model');
 router.get('/posts', async (req, res) => {
   try {
     const result = await Post
-      .find({status: 'published'}) //status publikacji
+      .find()
       .select('author created title photo status') // pola które chcemy pobierać
       .sort({created: -1}); // sortowanie w kolejności malejącej
     if(!result) res.status(404).json({ post: 'Not found' });

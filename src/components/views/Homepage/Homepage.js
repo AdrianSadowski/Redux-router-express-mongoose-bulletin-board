@@ -63,7 +63,6 @@ const Component = ({isLoggedIn}) => {
       </Button>
     );
   }
-  console.log(posts);
   return (
     <div className={styles.root}>
       <Toolbar sx={{justifyContent: 'space-between'}}>

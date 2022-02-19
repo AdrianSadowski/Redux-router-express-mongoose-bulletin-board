@@ -17,19 +17,19 @@ function Component({post, isLoggedIn}) {
 
   const handlePost = event => {
     event.preventDefault();
-    dispatch(removePost(post.id));
+    dispatch(removePost(post._id));
     console.log(post);
     navigate('/', {state: {prevAction: 'Post has been removed'}});
   };
 
   let buttons;
   if (isLoggedIn.logged === true) {
-    if (isLoggedIn.id === post.author.id || isLoggedIn.role === 'admin') {
+    if (isLoggedIn.id === post.author || isLoggedIn.role === 'admin') {
       buttons = (
         <div className={styles.root}>
           <Button
             component={Link}
-            to={`/post/${post.id}/edit`}
+            to={`/post/${post._id}/edit`}
             variant="contained"
             size="medium"
             color="secondary"
@@ -57,10 +57,8 @@ function Component({post, isLoggedIn}) {
 
 Component.propTypes = {
   post: PropTypes.shape({
-    id: PropTypes.string,
-    author: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }),
+    _id: PropTypes.string,
+    author: PropTypes.string,
   }).isRequired,
   isLoggedIn: PropTypes.object.isRequired,
 };
