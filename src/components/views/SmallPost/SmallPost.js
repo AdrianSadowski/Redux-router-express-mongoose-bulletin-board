@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 const Component = ({post}) => (
   //<Badge status={post.status}>
   <Card 
-    key={post.id}
+    key={post._id}
     raised
     sx={{
       display: 'flex',
@@ -20,7 +20,7 @@ const Component = ({post}) => (
       mb: 4,
     }}
   >
-    <CardActionArea component={Link} to={`post/${post.id}`} >
+    <CardActionArea component={Link} to={`post/${post._id}`} >
       <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
         <Typography variant="h6" p={2}>
           {post.title}
@@ -38,7 +38,7 @@ const Component = ({post}) => (
 
 Component.propTypes = {
   post: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string,
     status: PropTypes.string,

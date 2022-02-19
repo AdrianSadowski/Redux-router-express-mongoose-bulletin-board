@@ -63,6 +63,7 @@ const Component = ({isLoggedIn}) => {
       </Button>
     );
   }
+  console.log(posts);
   return (
     <div className={styles.root}>
       <Toolbar sx={{justifyContent: 'space-between'}}>
@@ -71,7 +72,7 @@ const Component = ({isLoggedIn}) => {
       </Toolbar>
       <div className={styles.post}>
         {concent.posts.map(post => (
-          <SmallPost key={post.id} post={post}></SmallPost>
+          <SmallPost key={post._id} post={post}></SmallPost>
         ))}
       </div>
     </div>

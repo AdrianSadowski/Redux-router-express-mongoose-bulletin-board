@@ -36,23 +36,6 @@ export const removePost = payload => ({payload, type: REMOVE_POST});
 export const updatePost = payload => ({payload, type: UPDATE_POST});
 
 /* thunk creators */
-export const fetchPublished = () => {
-  return (dispatch, getState,) => {
-    const state = getState();
-    if(!state.posts.data.length && state.posts.loading.active === false){
-      dispatch(fetchStarted());
-
-      Axios
-        .get('http://localhost:8000/api/posts')
-        .then(res => {
-          dispatch(fetchSuccess(res.data));
-        })
-        .catch(err => {
-          dispatch(fetchError(err.message || true));
-        });
-    }
-  };
-};
 export const fetchAllPosts = () => async (dispatch, getState) => {
   const {posts} = getState();
 
