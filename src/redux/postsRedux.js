@@ -11,6 +11,7 @@ export const getPostById = ({posts, users}, postId) => {
   return post;
 };
 export const getAllPublished = ({posts}) => posts.data.filter(item => item.status === 'published');
+export const getLoadingState = ({ posts }) => posts.loading;
 
 /* action name creator */
 const reducerName = 'posts';
@@ -35,19 +36,23 @@ export const removePost = payload => ({payload, type: REMOVE_POST});
 export const updatePost = payload => ({payload, type: UPDATE_POST});
 
 /* thunk creators */
-// export const fetchPublished = () => {
-//   return (dispatch, getState) => {
-//     dispatch(fetchStarted());
+export const fetchPublished = () => {
+  return (dispatch, getState,) => {
+    const state = getState();
+    if(!state.posts.data.length && state.posts.loading.active === false){
+      dispatch(fetchStarted());
 
-//     Axios.get('http://localhost:8000/api/posts')
-//       .then(res => {
-//         dispatch(fetchSuccess(res.data));
-//       })
-//       .catch(err => {
-//         dispatch(fetchError(err.message || true));
-//       });
-//   };
-// };
+      Axios
+        .get('http://localhost:8000/api/posts')
+        .then(res => {
+          dispatch(fetchSuccess(res.data));
+        })
+        .catch(err => {
+          dispatch(fetchError(err.message || true));
+        });
+    }
+  };
+};
 export const fetchAllPosts = () => async (dispatch, getState) => {
   const {posts} = getState();
 

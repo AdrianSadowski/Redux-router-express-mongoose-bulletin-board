@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getAll , fetchAllPosts} from '../../../redux/postsRedux';
+import {getAll, fetchAllPosts, getLoadingState} from '../../../redux/postsRedux';
 import {getUser} from '../../../redux/userRedux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {SmallPost} from '../SmallPost/SmallPost';
 
@@ -11,7 +12,23 @@ import {Button, Toolbar} from '@mui/material';
 
 import styles from './Homepage.module.scss';
 
-const Component = ({className, posts, isLoggedIn}) => {
+const Component = ({isLoggedIn}) => {
+  // React.useEffect(() => {
+  //   fetchPublishedPosts();
+  // }, []);
+  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const allPosts = useSelector(state => getAll(state));
+  const loadingState = useSelector(state => getLoadingState(state));
+
+  useEffect(() => {
+    const {active, error} = loadingState;
+    if (!active && !error) {
+      dispatch(fetchAllPosts());
+      setPosts(allPosts);
+    }
+  }, [loadingState]);
+
   const concent = {
     title: 'All posts',
     buttonPostAdd: 'Add new post',
@@ -56,32 +73,32 @@ const Component = ({className, posts, isLoggedIn}) => {
         {concent.posts.map(post => (
           <SmallPost key={post.id} post={post}></SmallPost>
         ))}
-
       </div>
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  posts: PropTypes.arrayOf(PropTypes.object),
+  //children: PropTypes.node,
+  //className: PropTypes.string,
+  //posts: PropTypes.arrayOf(PropTypes.object),
   isLoggedIn: PropTypes.object.isRequired,
+  //fetchPublishedPosts: PropTypes.any,
 };
 
 const mapStateToProps = state => ({
-  posts: getAll(state),
+  //posts: getAll(state),
   isLoggedIn: getUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllPosts: () => dispatch(fetchAllPosts()),
+  //fetchPublishedPosts: () => dispatch(fetchPublished()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as Homepage,
+  //Component as Homepage,
   Container as Homepage,
   Component as HomepageComponent,
 };
