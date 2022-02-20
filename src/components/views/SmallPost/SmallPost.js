@@ -20,7 +20,7 @@ const Component = ({post}) => (
       mb: 4,
     }}
   >
-    <CardActionArea component={Link} to={`post/${post._id}`} >
+    <CardActionArea href={`/post/${post._id}`} >
       <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
         <Typography variant="h6" p={2}>
           {post.title}

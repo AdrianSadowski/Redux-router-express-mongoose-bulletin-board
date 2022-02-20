@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {getCurrentPost, fetchPostById} from '../../../redux/postsRedux';
-
+import {getPostById, fetchPostById} from '../../../redux/postsRedux';
+import { withRouter } from '../../../utils/utils';
 import {PostContent} from '../../features/PostContent/PostContent';
 import styles from './Post.module.scss';
 
@@ -11,13 +11,16 @@ import styles from './Post.module.scss';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ post, fetchOnePost}) => {
-  React.useEffect(() => {
-    fetchOnePost();
-  }, [fetchOnePost]);
+
+  fetchOnePost();
+  console.log(fetchOnePost);
+
 
   return (
     <div className={styles.root}>
-      <PostContent post={post} />
+      {/* <PostContent post={post} /> */}
+      <h1>{post.title}</h1>
+      <p>{post.author}</p>
     </div>
   );
 };
@@ -29,15 +32,15 @@ Component.propTypes = {
   match: PropTypes.object,
 };
 
-const mapStateToProps = (state, props) => ({
-  post: getCurrentPost(state),
+const mapStateToProps = (state, {router}) => ({
+  post: getPostById(state, router.params.id),
 });
 
-const mapDispatchToProps = (dispatch, props) => ({
-  fetchOnePost: () => dispatch(fetchPostById(props.match.params.id)),
+const mapDispatchToProps = (dispatch, {router}) => ({
+  fetchOnePost: () => dispatch(fetchPostById(router.params.id)),
 });
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = withRouter(connect(mapStateToProps, mapDispatchToProps)(Component));
 
 export {
   //Component as Post,

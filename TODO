@@ -3,3 +3,69 @@
 
 
 --- BACKEND
+
+      {
+        title: 'Audi RS6',
+        description: `Description of post One. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+        publicationDate: '7-02-2022',
+        lastUpdate: '7-02-2022',
+        author: {
+          id: 2,
+          email: 'kowalski@poczta.pl',
+        },
+        status: 'published',
+        price: '489',
+        location: 'Warszawa',
+      },
+      {
+        title: 'Mercedes-Benz AMG GT',
+        description: `Description of post Two. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+        publicationDate: '7-02-2022',
+        lastUpdate: '7-02-2022',
+        author: {
+          id: 2,
+          email: 'kowalski@poczta.pl',
+        },
+        status: 'published',
+        price: '1800',
+        location: 'Dubai',
+      },
+      {
+        title: 'BMW M3 DKG',
+        description: `Description of post Three. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+        publicationDate: '7-02-2022',
+        lastUpdate: '7-02-2022',
+        author: {
+          id: 1,
+          email: 'sadow.adrian@gmail.com',
+        },
+        status: 'published',
+        price: '999',
+        location: 'Krakow',
+      },
+      {
+        title: 'Ferrari California F1',
+        description: `Description of post Four. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+        publicationDate: '7-02-2022',
+        lastUpdate: '7-02-2022',
+        author: {
+          id: 1,
+          email: 'sadow.adrian@gmail.com',
+        },
+        status: 'draft',
+        price: '200',
+        location: 'Katowice',
+      },
+      {
+        title: 'Fiat 125',
+        description: `Description of post Four. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+        publicationDate: '7-02-2022',
+        lastUpdate: '7-02-2022',
+        author: {
+          id: 1,
+          email: 'sadow.adrian@gmail.com',
+        },
+        status: 'published',
+        price: '200',
+        location: 'Katowice',
+      },

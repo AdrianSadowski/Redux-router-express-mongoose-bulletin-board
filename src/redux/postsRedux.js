@@ -2,7 +2,7 @@ import Axios from 'axios';
 
 /* selectors */
 export const getAll = ({posts}) => posts.data;
-export const getCurrentPost = ({posts}) => posts.currentPost;
+export const getOnePost = ({ posts }) => posts.onePost;
 export const getPostById = ({posts, users}, postId) => {
   const post = posts.data.find(innerPost => innerPost._id === postId);
   if (post) {
@@ -22,7 +22,7 @@ const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
 const FETCH_POSTS = createActionName('FETCH_POSTS');
-const FETCH_CURRENT_POST = createActionName('FETCH_CURRENT_POST');
+const GET_ONE_POST = createActionName('GET_ONE_POST');
 
 const ADD_POST = createActionName('ADD_POST');
 const REMOVE_POST = createActionName('REMOVE_POST');
@@ -33,7 +33,7 @@ export const fetchStarted = payload => ({payload, type: FETCH_START});
 export const fetchSuccess = payload => ({payload, type: FETCH_SUCCESS});
 export const fetchError = payload => ({payload, type: FETCH_ERROR});
 const fetchPosts = payload => ({payload, type: FETCH_POSTS});
-const fetchCurrentPost = payload => ({payload, type: FETCH_CURRENT_POST});
+export const fetchOnePost = payload => ({ payload, type: GET_ONE_POST });
 
 export const addPost = payload => ({payload, type: ADD_POST});
 export const removePost = payload => ({payload, type: REMOVE_POST});
@@ -55,21 +55,22 @@ export const fetchAllPosts = () => async (dispatch, getState) => {
       });
   }
 };
+
 export const fetchPostById = (id) => {
 
   return (dispatch, getState) => {
     dispatch(fetchStarted());
+    console.log('getState', getState());
     Axios
       .get(`http://localhost:8000/api/posts/${id}`)
       .then(res => {
-        dispatch(fetchCurrentPost(res.data));
+        dispatch(fetchOnePost(res.data));
       })
       .catch(err => {
         dispatch(fetchError(err.message || true));
       });
   };
 };
-
 // export const fetchPostById = (id) => {
 //   return (dispatch, getState,) => {
 //     dispatch(fetchStarted());
@@ -135,7 +136,7 @@ export default function reducer(statePart = [], action = {}) {
 
       return {...statePart, data: newData};
     }
-    case FETCH_CURRENT_POST: {
+    case GET_ONE_POST: {
       return {
         ...statePart,
         loading: {

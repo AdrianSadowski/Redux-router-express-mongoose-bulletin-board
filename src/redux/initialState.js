@@ -5,16 +5,16 @@ const userTwoId = shortid();
 
 const initialState = {
   users: [
-    {
-      id: userOneId,
-      email: 'sadow.adrian@gmail.com',
-      password: '123',
-    },
-    {
-      id: userTwoId,
-      email: 'kowalski@poczta.pl',
-      password: '123',
-    },
+    // {
+    //   id: userOneId,
+    //   email: 'sadow.adrian@gmail.com',
+    //   password: '123',
+    // },
+    // {
+    //   id: userTwoId,
+    //   email: 'kowalski@poczta.pl',
+    //   password: '123',
+    // },
   ],
   user: {
     logged: true,

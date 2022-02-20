@@ -12,23 +12,23 @@ import {Button, Toolbar} from '@mui/material';
 
 import styles from './Homepage.module.scss';
 
-const Component = ({isLoggedIn}) => {
+const Component = ({isLoggedIn, posts, fetchPublishedPosts}) => {
   // React.useEffect(() => {
   //   fetchPublishedPosts();
   // }, []);
-  const [posts, setPosts] = useState([]);
-  const dispatch = useDispatch();
-  const allPosts = useSelector(state => getAll(state));
-  const loadingState = useSelector(state => getLoadingState(state));
+  // const [posts, setPosts] = useState([]);
+  // const dispatch = useDispatch();
+  // const allPosts = useSelector(state => getAll(state));
+  // const loadingState = useSelector(state => getLoadingState(state));
 
-  useEffect(() => {
-    const {active, error} = loadingState;
-    if (!active && !error) {
-      dispatch(fetchAllPosts());
-      setPosts(allPosts);
-    }
-  }, [loadingState]);
-
+  // useEffect(() => {
+  //   const {active, error} = loadingState;
+  //   if (!active && !error) {
+  //     dispatch(fetchAllPosts());
+  //     setPosts(allPosts);
+  //   }
+  // }, [loadingState]);
+  fetchPublishedPosts();
   const concent = {
     title: 'All posts',
     buttonPostAdd: 'Add new post',
@@ -79,20 +79,18 @@ const Component = ({isLoggedIn}) => {
 };
 
 Component.propTypes = {
-  //children: PropTypes.node,
-  //className: PropTypes.string,
-  //posts: PropTypes.arrayOf(PropTypes.object),
+  posts: PropTypes.arrayOf(PropTypes.object),
   isLoggedIn: PropTypes.object.isRequired,
-  //fetchPublishedPosts: PropTypes.any,
+  fetchPublishedPosts: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  //posts: getAll(state),
+  posts: getAll(state),
   isLoggedIn: getUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  //fetchPublishedPosts: () => dispatch(fetchPublished()),
+  fetchPublishedPosts: () => dispatch(fetchAllPosts()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

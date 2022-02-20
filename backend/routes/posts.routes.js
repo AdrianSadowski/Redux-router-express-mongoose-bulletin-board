@@ -7,8 +7,7 @@ router.get('/posts', async (req, res) => {
   try {
     const result = await Post
       .find()
-      .select('author created title photo status') // pola które chcemy pobierać
-      .sort({created: -1}); // sortowanie w kolejności malejącej
+      .sort({created: -1});
     if(!result) res.status(404).json({ post: 'Not found' });
     else res.json(result);
   }
@@ -28,5 +27,8 @@ router.get('/posts/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+
 
 module.exports = router;
