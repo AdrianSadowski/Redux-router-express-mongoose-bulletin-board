@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getAll, fetchAllPosts, getLoadingState} from '../../../redux/postsRedux';
+import {getAll, fetchAllPosts} from '../../../redux/postsRedux';
 import {getUser} from '../../../redux/userRedux';
-import {useDispatch, useSelector} from 'react-redux';
+
 
 import {SmallPost} from '../SmallPost/SmallPost';
 
@@ -13,21 +13,7 @@ import {Button, Toolbar} from '@mui/material';
 import styles from './Homepage.module.scss';
 
 const Component = ({isLoggedIn, posts, fetchPublishedPosts}) => {
-  // React.useEffect(() => {
-  //   fetchPublishedPosts();
-  // }, []);
-  // const [posts, setPosts] = useState([]);
-  // const dispatch = useDispatch();
-  // const allPosts = useSelector(state => getAll(state));
-  // const loadingState = useSelector(state => getLoadingState(state));
 
-  // useEffect(() => {
-  //   const {active, error} = loadingState;
-  //   if (!active && !error) {
-  //     dispatch(fetchAllPosts());
-  //     setPosts(allPosts);
-  //   }
-  // }, [loadingState]);
   fetchPublishedPosts();
   const concent = {
     title: 'All posts',

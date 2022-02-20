@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {getUser} from '../../../redux/userRedux';
 import {connect, useDispatch} from 'react-redux';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {Button} from '@mui/material';
 import {removePost} from '../../../redux/postsRedux';
 
@@ -13,13 +13,13 @@ import styles from './PostButtons.module.scss';
 
 function Component({post, isLoggedIn}) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handlePost = event => {
     event.preventDefault();
     dispatch(removePost(post._id));
     console.log(post);
-    navigate('/', {state: {prevAction: 'Post has been removed'}});
+    // navigate('/', {state: {prevAction: 'Post has been removed'}});
   };
 
   let buttons;

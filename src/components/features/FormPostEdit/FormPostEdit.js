@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {formatDate} from '../../../utils/utils';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import {Grid, TextField, Box, Button} from '@mui/material';
 
@@ -15,7 +15,7 @@ function Component({post, sendForm}) {
   const [description, setDescription] = useState();
   const [price, setPrice] = useState();
   const [location, setLocation] = useState();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -33,7 +33,7 @@ function Component({post, sendForm}) {
       status: event.target.id,
     });
 
-    navigate(`/post/${id}`, {state: {prevAction: `Post ${title} has been changed`}});
+    // navigate(`/post/${id}`, {state: {prevAction: `Post ${title} has been changed`}});
   };
 
   return (
