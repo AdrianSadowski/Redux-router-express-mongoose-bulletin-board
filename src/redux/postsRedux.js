@@ -2,7 +2,7 @@ import Axios from 'axios';
 
 /* selectors */
 export const getAll = ({posts}) => posts.data;
-export const getPost = ({posts}) => posts.onePost; 
+export const getPost = ({posts}) => posts.currentPost;
 export const getPostById = ({posts, users}, postId) => {
   const post = posts.data.find(innerPost => innerPost._id === postId);
   if (post) {
@@ -33,12 +33,11 @@ export const fetchStarted = payload => ({payload, type: FETCH_START});
 export const fetchSuccess = payload => ({payload, type: FETCH_SUCCESS});
 export const fetchError = payload => ({payload, type: FETCH_ERROR});
 const fetchPosts = payload => ({payload, type: FETCH_POSTS});
-export const fetchOnePost = (payload) => ({ payload, type: FETCH_ONE_POST });
+export const fetchOnePost = payload => ({payload, type: FETCH_ONE_POST});
 
 export const addPost = payload => ({payload, type: ADD_POST});
 export const removePost = payload => ({payload, type: REMOVE_POST});
 export const updatePost = payload => ({payload, type: UPDATE_POST});
-
 
 /* thunk creators */
 export const fetchAllPosts = () => async (dispatch, getState) => {
@@ -57,25 +56,10 @@ export const fetchAllPosts = () => async (dispatch, getState) => {
   }
 };
 
-export const fetchPostById = (id) => {
-
-  return (dispatch, getState) => {
-    dispatch(fetchStarted());
-    Axios
-      .get(`http://localhost:8000/api/posts/${id}`)
-      .then(res => {
-        dispatch(fetchOnePost(res.data));
-      })
-      .catch(err => {
-        dispatch(fetchError(err.message || true));
-      });
-  };
-};
 // export const fetchPostById = (id) => {
-//   return (dispatch, getState,) => {
-//     dispatch(fetchStarted());
-//     console.log('getState', getState());
 
+//   return (dispatch, getState) => {
+//     dispatch(fetchStarted());
 //     Axios
 //       .get(`http://localhost:8000/api/posts/${id}`)
 //       .then(res => {
@@ -86,6 +70,22 @@ export const fetchPostById = (id) => {
 //       });
 //   };
 // };
+
+export const fetchPostById = postId => (dispatch, getState) => {
+  const {posts} = getState();
+
+  if (!posts.currentPost || posts.currentPost._id !== postId) {
+    dispatch(fetchStarted());
+    Axios.get(`http://localhost:8000/api/posts/${postId}`)
+      .then(res => {
+        dispatch(fetchOnePost(res.data));
+        dispatch(fetchSuccess(res.data));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  }
+};
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
@@ -143,7 +143,7 @@ export default function reducer(statePart = [], action = {}) {
           active: false,
           error: false,
         },
-        onePost: action.payload,
+        currentPost: action.payload,
       };
     }
     default:

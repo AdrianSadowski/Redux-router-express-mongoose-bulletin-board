@@ -65,7 +65,7 @@ function Component({post}) {
             <CardMedia component="img" src={image2} alt="PostContent image example" />
           </Grid>
         </Grid>
-        <PostButtons post={post} />
+        {/* <PostButtons post={post} /> */}
       </Card>
       {/* </Badge> */}
     </div>

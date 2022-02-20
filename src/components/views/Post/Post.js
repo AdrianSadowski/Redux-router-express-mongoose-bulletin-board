@@ -14,7 +14,7 @@ const Component =  ({title, post, fetchOnePost}) =>  {
   return (
     <div className={styles.root}>
       {/* <PostContent post={post} /> */}
-      <h1> {post.title}</h1>
+      {/* <h1> {post.title}</h1> */}
 
     </div>
   );
@@ -24,7 +24,7 @@ Component.propTypes = {
   className: PropTypes.string,
   fetchOnePost: PropTypes.func,
   params: PropTypes.object,
-  post: PropTypes.object,
+  post: PropTypes.object.isRequired,
   title: PropTypes.string,
 };
 
