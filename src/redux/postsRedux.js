@@ -64,6 +64,7 @@ export const fetchAllPosts = () => async (dispatch, getState) => {
 //       .get(`http://localhost:8000/api/posts/${id}`)
 //       .then(res => {
 //         dispatch(fetchOnePost(res.data));
+//         dispatch(fetchSuccess(res.data));
 //       })
 //       .catch(err => {
 //         dispatch(fetchError(err.message || true));
@@ -71,12 +72,12 @@ export const fetchAllPosts = () => async (dispatch, getState) => {
 //   };
 // };
 
-export const fetchPostById = postId => (dispatch, getState) => {
+export const fetchPostById = postId => async (dispatch, getState) => {
   const {posts} = getState();
 
   if (!posts.currentPost || posts.currentPost._id !== postId) {
     dispatch(fetchStarted());
-    Axios.get(`http://localhost:8000/api/posts/${postId}`)
+    await Axios.get(`http://localhost:8000/api/posts/${postId}`)
       .then(res => {
         dispatch(fetchOnePost(res.data));
         dispatch(fetchSuccess(res.data));

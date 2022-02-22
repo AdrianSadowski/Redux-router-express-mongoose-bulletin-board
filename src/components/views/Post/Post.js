@@ -6,26 +6,24 @@ import {PostContent} from '../../features/PostContent/PostContent';
 import styles from './Post.module.scss';
 
 
-const Component =  ({title, post, fetchOnePost}) =>  {
+const Component =  ({post, fetchOnePost}) =>  {
   console.log(post);
 
   fetchOnePost();
 
   return (
     <div className={styles.root}>
-      {/* <PostContent post={post} /> */}
-      {/* <h1> {post.title}</h1> */}
+      {post && <PostContent post={post} />}
 
     </div>
   );
 };
 
 Component.propTypes = {
-  className: PropTypes.string,
-  fetchOnePost: PropTypes.func,
-  params: PropTypes.object,
   post: PropTypes.object.isRequired,
-  title: PropTypes.string,
+  className: PropTypes.string,
+  params: PropTypes.object,
+  fetchOnePost: PropTypes.func,
 };
 
 const mapStateToProps = (state, props) => ({

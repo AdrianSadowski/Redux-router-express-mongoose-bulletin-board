@@ -39,7 +39,7 @@ function Component({className, children, isLoggedIn}) {
         <Button variant="contained" size="medium" color="secondary">
           My Items
         </Button>
-        <Button variant="contained" size="medium" color="secondary">
+        <Button component={Link} to="/logout" variant="contained" size="medium" color="secondary">
           LogOut
         </Button>
       </div>
@@ -58,7 +58,7 @@ function Component({className, children, isLoggedIn}) {
     <Box sx={{flexGrow: 1}}>
       <AppBar position="static">
         <Toolbar>
-          <Link to="/">
+          <Link to={'/'}>
             <IconButton
               aria-label="back to homepage"
               size="large"
