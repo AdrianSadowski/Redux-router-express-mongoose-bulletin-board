@@ -1,39 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {addPost} from '../../../redux/postsRedux';
-import shortid from 'shortid';
+import {fetchAddPost} from '../../../redux/postsRedux';
+import {getUserData} from '../../../redux/userRedux';
+// import shortid from 'shortid';
 import {connect} from 'react-redux';
 
 import styles from './PostAdd.module.scss';
 import {FormPostAdd} from '../../features/FormPostAdd/FormPostAdd';
 
-const Component = ({addNewPost}) => {
+const Component = ({addNewPost, userData}) => {
   const sendForm = formData => {
     addNewPost({
       ...formData,
-      id: shortid(),
+      author: userData.email,
       publicationDate: formData.lastUpdate,
     });
   };
 
   return (
     <div className={styles.root}>
-      <FormPostAdd sendForm={sendForm} />
+      <FormPostAdd addNewPost={sendForm} />
     </div>
   );
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
+  userData: PropTypes.shape({email: PropTypes.string}).isRequired,
   addNewPost: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  addNewPost: payload => dispatch(addPost(payload)),
+const mapStateToProps = state => ({
+  userData: getUserData(state),
 });
 
-const Container = connect(null, mapDispatchToProps)(Component);
+const mapDispatchToProps = dispatch => ({
+  addNewPost: payload => dispatch(fetchAddPost(payload)),
+});
+
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   //Component as PostAdd,

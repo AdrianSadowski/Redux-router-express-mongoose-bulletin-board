@@ -25,25 +25,11 @@ router.get('/posts/:id', async (req, res) => {
 
 router.post('/posts/add', async (req, res) => {
   try {
-    const {author, publicationDate, lastUpdate, status, title, description, photo, price, phone, location} =
-      req.body;
-    const newPost = new Post({
-      author,
-      publicationDate,
-      lastUpdate,
-      status,
-      title,
-      description,
-      photo,
-      price,
-      phone,
-      location,
-    });
+    const newPost = await new Post(req.body);
     await newPost.save();
-    res.json({newPost});
-    if (!newPost) res.status(404).json({post: 'Not Found'});
+    res.json(newPost);
   } catch (err) {
-    res.status(500).json({message: err});
+    res.status(500).json(err);
   }
 });
 

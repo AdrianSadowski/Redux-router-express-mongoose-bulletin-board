@@ -56,22 +56,6 @@ export const fetchAllPosts = () => async (dispatch, getState) => {
   }
 };
 
-// export const fetchPostById = (id) => {
-
-//   return (dispatch, getState) => {
-//     dispatch(fetchStarted());
-//     Axios
-//       .get(`http://localhost:8000/api/posts/${id}`)
-//       .then(res => {
-//         dispatch(fetchOnePost(res.data));
-//         dispatch(fetchSuccess(res.data));
-//       })
-//       .catch(err => {
-//         dispatch(fetchError(err.message || true));
-//       });
-//   };
-// };
-
 export const fetchPostById = postId => async (dispatch, getState) => {
   const {posts} = getState();
 
@@ -86,6 +70,22 @@ export const fetchPostById = postId => async (dispatch, getState) => {
         dispatch(fetchError(err.message || true));
       });
   }
+};
+
+export const fetchAddPost = (post) => {
+  console.log('in fetch post', post);
+
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
+    Axios.post('http://localhost:8000/api/posts/add', post,)
+      .then((res) => {
+        dispatch(addPost(post));
+        dispatch(fetchSuccess(post));
+      })
+      .catch((err) => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
 };
 
 /* reducer */

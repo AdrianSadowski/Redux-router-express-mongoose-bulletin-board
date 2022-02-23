@@ -1,41 +1,24 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
-import {connect} from 'react-redux';
-import {addPost} from '../../../redux/postsRedux';
-import {getUserData} from '../../../redux/userRedux';
-import { formatDate } from '../../../utils/utils';
-// import { useNavigate } from 'react-router-dom';
-
+import {formatDate} from '../../../utils/utils';
 import {Grid, TextField, Box, Button} from '@mui/material';
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
 import styles from './FormPostAdd.module.scss';
 
-function Component({className, children, addNewPost, userData}) {
+function Component({addNewPost}) {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [price, setPrice] = useState();
   const [location, setLocation] = useState();
-  // const navigate = useNavigate();
 
   const handleSubmit = event => {
     event.preventDefault();
     const today = formatDate.DDMMYYYY(new Date());
-    const newID = shortid();
 
     addNewPost({
-      id: newID,
       title,
       description,
       publicationDate: today,
       lastUpdate: today,
-      author: {
-        id: userData.id,
-        email: userData.id,
-      },
       status: event.target.id,
       price,
       location,
@@ -92,24 +75,37 @@ function Component({className, children, addNewPost, userData}) {
 }
 
 Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
   addNewPost: PropTypes.func.isRequired,
-  userData: PropTypes.shape({id: PropTypes.string}).isRequired,
+  // userData: PropTypes.shape({email: PropTypes.string}).isRequired,
 };
 
-const mapStateToProps = state => ({
-  userData: getUserData(state),
-});
+Component.defaultProps = {
+  post: {
+    author: '',
+    publicationDate: null,
+    lastUpdate: null,
+    status: null,
+    title: '',
+    description: '',
+    photo: null,
+    price: null,
+    phone: null,
+    location: '',
+  },
+};
 
-const mapDispatchToProps = dispatch => ({
-  addNewPost: payload => dispatch(addPost(payload)),
-});
+// const mapStateToProps = state => ({
+//   userData: getUserData(state),
+// });
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+// const mapDispatchToProps = dispatch => ({
+//   addNewPost: payload => dispatch(addPost(payload)),
+// });
+
+// const Container = connect(mapStateToProps)(Component);
 
 export {
-  //Component as FormPostAdd,
-  Container as FormPostAdd,
+  Component as FormPostAdd,
+  //Container as FormPostAdd,
   Component as FormPostAddComponent,
 };
