@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {getAll, fetchAllPosts} from '../../../redux/postsRedux';
 import {getUser} from '../../../redux/userRedux';
 
-
 import {SmallPost} from '../SmallPost/SmallPost';
 
 import {Button, Toolbar} from '@mui/material';
@@ -13,12 +12,13 @@ import {Button, Toolbar} from '@mui/material';
 import styles from './Homepage.module.scss';
 
 const Component = ({isLoggedIn, posts, fetchPublishedPosts}) => {
-
   fetchPublishedPosts();
   const concent = {
     title: 'All posts',
     buttonPostAdd: 'Add new post',
-    posts: posts.filter(post => post.status === 'published'),
+    // posts: { posts &&
+    //   posts.filter(post => post.status === 'published')},
+    // need create subpage DRAFT posts and MY POSTS
   };
 
   let buttonNewPost;
@@ -55,11 +55,13 @@ const Component = ({isLoggedIn, posts, fetchPublishedPosts}) => {
         <h2>{concent.title}</h2>
         {buttonNewPost}
       </Toolbar>
-      <div className={styles.post}>
-        {concent.posts.map(post => (
-          <SmallPost key={post._id} post={post}></SmallPost>
-        ))}
-      </div>
+      {posts.length && (
+        <div className={styles.post}>
+          {posts.map(post => (
+            <SmallPost key={post._id} post={post}></SmallPost>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -63,6 +63,7 @@ function Component({post}) {
           <Grid item xs={12} sm={4} md={3}>
             <CardMedia component="img" src={image} alt="PostContent image example" />
             <CardMedia component="img" src={image2} alt="PostContent image example" />
+            {/* <CardMedia component="img" src={photo} alt="PostContent image example" /> */}
           </Grid>
         </Grid>
         {/* <PostButtons post={post} /> */}
@@ -83,6 +84,7 @@ Component.propTypes = {
     status: PropTypes.string.isRequired,
     image: PropTypes.string,
     image2: PropTypes.string,
+    // photo: PropTypes.string,
     price: PropTypes.string,
     location: PropTypes.string,
   }).isRequired,
